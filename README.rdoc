@@ -1,6 +1,7 @@
 = fpswax
 
-Description goes here.
+This allows for integration with Amazon FPS in the common-case. 
+This is not a full implementation yet.
 
 == Copyright
 
