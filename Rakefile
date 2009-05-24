@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "fpswax"
-    gem.summary = %Q{TODO}
-    gem.email = "dbalatero@evri.com"
+    gem.summary = %Q{A library for interfacing with Amazon FPS, without any "cleverness".}
+    gem.email = "david@bitwax.cd"
     gem.homepage = "http://github.com/dbalatero/fpswax"
     gem.authors = ["David Balatero"]
 
