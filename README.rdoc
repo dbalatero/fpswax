@@ -1,7 +1,8 @@
 = fpswax
 
 This allows for integration with Amazon FPS in the common-case. 
-This is not a full implementation yet.
+This is not a full implementation yet. Remit has *an* implementation,
+but it is highly out of date, and a bit too clever for my taste.
 
 == Copyright
 
