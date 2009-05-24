@@ -7,6 +7,8 @@ require 'fpswax/mixins/hmac_signature'
 
 require 'fpswax/error'
 require 'fpswax/ipn_request'
+require 'fpswax/response'
+require 'fpswax/session'
 
 module Fpswax
 end
