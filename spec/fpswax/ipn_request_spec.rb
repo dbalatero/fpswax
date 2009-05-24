@@ -29,7 +29,7 @@ describe Fpswax::IpnRequest do
         "tokenID" => "N1CHGCG13NNB4JMVJN1Q1JXIKBQDO4DQ595NRSCTILAU47P7GA7JVQMMJNXRUJFM", 
         "callerReference" => "44441234567fdsa44",
         "action" => "amazon_return",
-        "signature" => "UWMe0QT28DYwQvHEBOns+RxQ6EQ=",
+        "signature" => "uoOmSftU4gnUMK6Q1ylyGnr5hEw=",
         "controller" => "checkout",
         "expiry" => "10/2014",
         "status" => "SC"
