@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<Response><Errors><Error><Code>InvalidParams</Code><Message>"senderTokenId" has to be a valid token ID. Specified value: MY_TESTING_BAD_VALUE</Message></Error></Errors><RequestID>22dd4385-c7ac-4ea4-813f-e1452694abcc</RequestID></Response>
