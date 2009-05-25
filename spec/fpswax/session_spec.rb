@@ -38,6 +38,16 @@ describe Fpswax::Session do
     end
   end
 
+  describe "ipn_request" do
+    it "should return an IpnRequest object with the params and secret key passed through" do
+      params = { 'test' => 'it' }
+      session = Fpswax::Session.new('a', 'b', false)
+
+      request = session.ipn_request(params)
+      request.should be_a_kind_of(Fpswax::IpnRequest)
+    end
+  end
+
   describe "cbui_api_version" do
     session = Fpswax::Session.new('a', 'b', false)
     session.cbui_api_version.should == '2009-01-09'

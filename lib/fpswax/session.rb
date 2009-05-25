@@ -34,6 +34,10 @@ module Fpswax
       CBUI_API_VERSION
     end
 
+    def ipn_request(params)
+      IpnRequest.new(params, @secret_key)
+    end
+
     # operations
     # See: http://docs.amazonwebservices.com/AmazonFPS/2008-09-17/FPSAdvancedGuide/Pay.html
     def pay(params)
