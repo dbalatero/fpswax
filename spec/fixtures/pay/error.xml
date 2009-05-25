@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<Response><Errors><Error><Code>InvalidParams</Code><Message>"senderTokenId" has to be a valid token ID. Specified value: NOGNOOLIE</Message></Error></Errors><RequestID>92c73846-af37-4b36-8f31-78a26d6ea65c</RequestID></Response>

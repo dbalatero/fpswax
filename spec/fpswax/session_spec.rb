@@ -1,6 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Fpswax::Session do
+  before(:each) do
+    FakeWeb.clean_registry
+  end
+
   describe "initialize" do
     it "should take an access key, private key" do
       lambda {
@@ -45,14 +49,18 @@ describe Fpswax::Session do
       @valid_params = { 
         :CallerReference => 'a',
         :SenderTokenId => 'b',
-        :TransactionAmount => 'c'
+        :"TransactionAmount.CurrencyCode" => 'USD',
+        :"TransactionAmount.Value" => 'c'
       }
     end
 
     it "should return a PayResponse" do
-      pending
+      FakeWeb.register_uri(:post,
+                           'https://fps.sandbox.amazonaws.com:443/',
+                           :file => fixture_path('pay/success.xml'))
       response = @session.pay(@valid_params)
-      response.should be_an_instance_of(PayResponse)
+      response.should be_an_instance_of(Fpswax::PayResponse)
+      response.should be_valid
     end
 
     describe "should validate parameters" do
@@ -70,6 +78,36 @@ describe Fpswax::Session do
         lambda {
           @session.pay(@valid_params)
         }.should_not raise_error(Fpswax::Session::ParameterRequired)
+      end
+    end
+
+    describe "fps_url" do
+      it "should point at the production API if we are in production" do
+        session = Fpswax::Session.new('a', 'b', false)
+        session.should_not be_in_sandbox
+        session.fps_url.should == 'https://fps.amazonaws.com'
+      end
+
+      it "should point at the sandbox API if we aren't in production" do
+        session = Fpswax::Session.new('a', 'b', true)
+        session.should be_in_sandbox
+        session.fps_url.should == 'https://fps.sandbox.amazonaws.com'
+      end
+    end
+
+    describe "logger" do
+      before(:each) do
+        @session = Fpswax::Session.new('a', 'b')
+      end
+
+      it "should return a logger object" do
+        @session.logger.should be_a_kind_of(Logger)
+      end
+
+      it "should be able to be set to something else" do
+        lambda {
+          @session.logger = Logger.new(STDOUT)
+        }.should_not raise_error
       end
     end
   end

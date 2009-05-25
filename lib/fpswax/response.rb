@@ -10,14 +10,14 @@ module Fpswax
       end
 
       if @errors.empty?
-        @request_id = xml.css('RequestId')[0].content
+        @request_id = xml.css('RequestId')[0].content rescue nil
       else
-        @request_id = xml.css('RequestID')[0].content
+        @request_id = xml.css('RequestID')[0].content rescue nil
       end
     end
 
     def valid?
-      @errors.empty?
+      @request_id && @errors.empty?
     end
   end
 end

@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<PayResponse xmlns="http://fps.amazonaws.com/doc/2008-09-17/"><PayResult><TransactionId>145ST343M4FVUENSE545EV1BL7H6OU421QP</TransactionId><TransactionStatus>Success</TransactionStatus></PayResult><ResponseMetadata><RequestId>49da36a0-732a-4180-b0dd-c22fe2e0dd0b:0</RequestId></ResponseMetadata></PayResponse>

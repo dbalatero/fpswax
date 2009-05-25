@@ -31,5 +31,10 @@ describe Fpswax::Response do
       response = Fpswax::Response.new(xml)
       response.should_not be_valid
     end
+
+    it "should be false if there was no parsed request id" do
+      response = Fpswax::Response.new(mock_xml)
+      response.should_not be_valid
+    end
   end
 end
