@@ -16,5 +16,7 @@ require 'fpswax/session'
 
 require 'fpswax/pay_response'
 
+require 'fpswax/multi_use_pipeline_request'
+
 module Fpswax
 end

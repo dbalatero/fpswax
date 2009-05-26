@@ -48,9 +48,52 @@ describe Fpswax::Session do
     end
   end
 
-  describe "cbui_api_version" do
-    session = Fpswax::Session.new('a', 'b', false)
-    session.cbui_api_version.should == '2009-01-09'
+  describe "get_multi_use_pipeline" do
+    before(:each) do
+      @session = Fpswax::Session.new('a', 'b', true)
+      @valid_params = { 
+        :callerReference => 'a',
+        :globalAmountLimit => 5.00,
+        :returnURL => 'http://localhost:3000/return_url'
+      }
+    end
+
+    it "should return a MultiUsePipelineRequest" do
+      response = @session.get_multi_use_pipeline(@valid_params)
+      response.should be_an_instance_of(Fpswax::MultiUsePipelineRequest)
+    end
+
+    describe "should validate parameters" do
+      it "and raise an error if no valid params are passed" do
+        @valid_params.keys.each do |key|
+          bad_params = @valid_params.dup
+          bad_params.delete(key)
+          lambda {
+            @session.get_multi_use_pipeline(bad_params)
+          }.should raise_error(Fpswax::Session::ParameterRequired)
+        end
+      end
+
+      it "and not raise an error if valid params are passed" do
+        lambda {
+          @session.get_multi_use_pipeline(@valid_params)
+        }.should_not raise_error(Fpswax::Session::ParameterRequired)
+      end
+    end
+  end
+  
+  describe "fps_url" do
+    it "should point at the production API if we are in production" do
+      session = Fpswax::Session.new('a', 'b', false)
+      session.should_not be_in_sandbox
+      session.fps_url.should == 'https://fps.amazonaws.com'
+    end
+
+    it "should point at the sandbox API if we aren't in production" do
+      session = Fpswax::Session.new('a', 'b', true)
+      session.should be_in_sandbox
+      session.fps_url.should == 'https://fps.sandbox.amazonaws.com'
+    end
   end
 
   describe "pay" do

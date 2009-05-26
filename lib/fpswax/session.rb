@@ -3,7 +3,6 @@ module Fpswax
     class ParameterRequired < ArgumentError; end
 
     API_VERSION = '2008-09-17'
-    CBUI_API_VERSION = '2009-01-09'
 
     include Mixins::HmacSignature
 
@@ -30,12 +29,21 @@ module Fpswax
       API_VERSION
     end
 
-    def cbui_api_version
-      CBUI_API_VERSION
-    end
 
     def ipn_request(params)
       IpnRequest.new(params, @secret_key)
+    end
+
+    def get_multi_use_pipeline(params)
+      validate_required?(params,
+                         :callerReference,
+                         :globalAmountLimit,
+                         :returnURL)
+
+      MultiUsePipelineRequest.new(@access_key,
+                                  @secret_key,
+                                  params,
+                                  in_sandbox?)
     end
 
     # operations
