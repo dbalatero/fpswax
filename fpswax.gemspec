@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fpswax}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Balatero"]
@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
     "lib/fpswax/error.rb",
     "lib/fpswax/ipn_request.rb",
     "lib/fpswax/mixins/hmac_signature.rb",
+    "lib/fpswax/multi_use_pipeline_request.rb",
     "lib/fpswax/pay_response.rb",
     "lib/fpswax/response.rb",
     "lib/fpswax/session.rb",
@@ -35,6 +36,7 @@ Gem::Specification.new do |s|
     "spec/fpswax/error_spec.rb",
     "spec/fpswax/ipn_request_spec.rb",
     "spec/fpswax/mixins/hmac_signature_spec.rb",
+    "spec/fpswax/multi_use_pipeline_request_spec.rb",
     "spec/fpswax/pay_response_spec.rb",
     "spec/fpswax/response_spec.rb",
     "spec/fpswax/session_spec.rb",
@@ -50,6 +52,7 @@ Gem::Specification.new do |s|
     "spec/fpswax/error_spec.rb",
     "spec/fpswax/ipn_request_spec.rb",
     "spec/fpswax/mixins/hmac_signature_spec.rb",
+    "spec/fpswax/multi_use_pipeline_request_spec.rb",
     "spec/fpswax/pay_response_spec.rb",
     "spec/fpswax/response_spec.rb",
     "spec/fpswax/session_spec.rb",
