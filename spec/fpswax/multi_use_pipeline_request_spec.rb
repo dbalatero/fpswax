@@ -12,7 +12,7 @@ describe Fpswax::MultiUsePipelineRequest do
 
 
     it "should add the access key" do
-      @request.url.should =~ /callerKey=my access key/
+      @request.url.should =~ /callerKey=my\+access\+key/
     end
 
     it "should calculate an HMAC signature" do
@@ -28,7 +28,19 @@ describe Fpswax::MultiUsePipelineRequest do
     end
 
     it "should contain any parameters passed in" do
-      @request.url.should =~ /&returnURL=http:\/\/return_url/
+      @request.url.should =~ /&returnURL=http%3A%2F%2Freturn_url/
+    end
+
+    it "should urlencode every parameter" do
+      request = Fpswax::MultiUsePipelineRequest.new(
+        'foo',
+        'bar',
+        :var1 => "ok let's do this",
+        :var2 => "ok here+ is more### stuff ://"
+      )
+
+      request.url.should =~ /var1=ok\+let%27s\+do\+this/
+      request.url.should =~ /var2=ok\+here%2B\+is\+more%23%23%23\+stuff\+%3A%2F%2F/
     end
   end
 end

@@ -34,7 +34,7 @@ module Fpswax
 
     def create_url!
       @url = "" << cbui_url << "?awsSignature=#{@signature}&"
-      @url << @params.keys.map { |key| "#{key}=#{@params[key]}" }.join('&')
+      @url << @params.keys.map { |key| "#{key}=#{CGI.escape(@params[key].to_s)}" }.join('&')
     end
   end
 end
